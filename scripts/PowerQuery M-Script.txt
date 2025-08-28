@@ -1,0 +1,39 @@
+let 
+
+//folderPath is the Parameter for the folder path
+
+    Source = Folder.Files(folderPath), 
+
+    Custom1 = Table.TransformColumns(Source,{"Content",each Excel.Workbook(_)}),
+    #"Expanded Content" = Table.ExpandTableColumn(Custom1, "Content", {"Name", "Data", "Item", "Kind", "Hidden"}, {"Name.1", "Data", "Item", "Kind", "Hidden"}),
+    #"Filtered Rows" = Table.SelectRows(#"Expanded Content", each ([Name.1] = "OVER")),
+    #"Added Custom" = Table.AddColumn(#"Filtered Rows", "Custom", each Table.PromoteHeaders(Table.SelectRows([Data], each ([Column1] <> null)))),
+    Custom2 = Table.Combine(#"Added Custom"[Custom]),
+    #"Removed Other Columns" = Table.SelectColumns(Custom2,{"WORK ORDER", "CUSTOMER NAME", "DATE REC'D", "CAR MODEL", "MECHANIC", "DESCRIPITION", "INVOICE VALUE", "TOTAL COST", "GROSS PROFIT", "Make", "Month In"}),
+    #"Changed Type" = Table.TransformColumnTypes(#"Removed Other Columns",{{"DATE REC'D", type text}}),
+
+//fixing date column format to MM/DD/YY
+
+    #"Added Custom1" = Table.AddColumn(#"Changed Type", "Custom", each let parts = Text.Split([#"DATE REC'D"],"/"),
+p1 = try Number.FromText(parts{0}) otherwise null,
+p2 = try Number.FromText(parts{1}) otherwise null,
+year = try Number.FromText(parts{2}) otherwise null,
+expectedMonth = Date.Month(Date.FromText("1"&[Month In]&"2024")),
+stdDate = if p1 = expectedMonth then #date(year,p1,p2) else #date(year,p2,p1)
+in 
+stdDate),
+
+
+//Other column transformation
+
+    #"Renamed Columns" = Table.RenameColumns(#"Added Custom1",{{"Custom", "Date Received"}, {"WORK ORDER", "WorkOrder Number"}, {"CUSTOMER NAME", "Customer Name"}, {"CAR MODEL", "Car Brand"}, {"MECHANIC", "Mechanic"}, {"DESCRIPITION", "Description"}, {"INVOICE VALUE", "Revenue"}, {"TOTAL COST", "Cost"}, {"GROSS PROFIT", "Gross Profit"}}),
+    #"Changed Type1" = Table.TransformColumnTypes(#"Renamed Columns",{{"Date Received", type date}, {"Month In", type text}, {"Make", Int64.Type}, {"Gross Profit", Currency.Type}, {"Cost", Currency.Type}, {"Revenue", Currency.Type}}),
+    #"Removed Columns" = Table.RemoveColumns(#"Changed Type1",{"DATE REC'D"}),
+    #"Capitalized Each Word" = Table.TransformColumns(#"Removed Columns",{{"Customer Name", Text.Proper, type text}, {"Car Brand", Text.Proper, type text}, {"Mechanic", Text.Proper, type text}, {"Description", Text.Proper, type text}, {"Month In", Text.Proper, type text}}),
+    #"Trimmed Text" = Table.TransformColumns(#"Capitalized Each Word",{{"Customer Name", Text.Trim, type text}, {"Car Brand", Text.Trim, type text}, {"Mechanic", Text.Trim, type text}, {"Description", Text.Trim, type text}, {"Month In", Text.Trim, type text}}),
+    #"Reordered Columns" = Table.ReorderColumns(#"Trimmed Text",{"WorkOrder Number", "Date Received", "Month In", "Customer Name", "Car Brand", "Make", "Mechanic", "Description", "Revenue", "Cost", "Gross Profit"}),
+    #"Renamed Columns1" = Table.RenameColumns(#"Reordered Columns",{{"Month In", "Month"}}),
+    #"Sorted Rows" = Table.Sort(#"Renamed Columns1",{{"WorkOrder Number", Order.Ascending}}),
+    #"Removed Columns1" = Table.RemoveColumns(#"Sorted Rows",{"Month"})
+in
+    #"Removed Columns1"
