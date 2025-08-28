@@ -47,7 +47,7 @@ A simple report is then built on top to visualize gross profit over time.
 
 ### Setup Instructions
 1. Clone this repository or download the VBA and M script files.  
-2. Copy the VBA script into a new **Excel Macro-Enabled Workbook** (`.xlsm`).  
+2. Copy the VBA script into a new **Excel Macro-Enabled Workbook**.  
 3. Adjust the **folder path parameter** in Power Query to point to your designated folder.  
 4. Save and close.  
 
