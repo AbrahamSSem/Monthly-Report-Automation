@@ -1,3 +1,5 @@
+![Demo of Report](assets/demo.gif)
+
 # Monthly Report Automation (VBA + PowerQuery)
 <h2 style="color:blue;">Challenge – Before Automation</h2>
 
