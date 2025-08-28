@@ -1,5 +1,4 @@
 # Monthly Report Automation (VBA + PowerQuery)
-**Automated monthly reporting workflow using VBA + Power Query. From 3 days of manual work to just 2 clicks.**
 
 This is a short project that takes us through the automation process of the monthly reporting process for the job orders and profitability analysis for a small garage workshop.  
 
