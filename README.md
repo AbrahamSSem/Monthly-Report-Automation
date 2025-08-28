@@ -1,4 +1,5 @@
 # Monthly Report Automation (VBA + PowerQuery)
+<h2 style="color:blue;">Challenge – Before Automation</h2>
 
 This is a short project that takes us through the automation process of the monthly reporting process for the job orders and profitability analysis for a small garage workshop.  
 
@@ -10,14 +11,14 @@ The automation uses a mixture of:
 
 A simple report is then built on top to visualize gross profit over time.  
 
-## Challenge – Before Automation
+<h2 style="color:blue;">Challenge – Before Automation</h2>
 
 - Each month a file is received from the workshop via email (sometimes WhatsApp).  
 - The file contains multiple sheets (3 sheets per work order) and a summary sheet.  
 - Data had to be manually extracted, cleaned, and then compiled to send the report to the workshop manager.  
 - Reports often took **2–3 days** to prepare depending on the number of work orders.  
 
-## Solution – After Automation
+<h2 style="color:blue;">Solution – After Automation</h2>
 
 ### 1. VBA Script
 - Locates the latest file dropped in the folder and opens it.  
@@ -32,7 +33,7 @@ A simple report is then built on top to visualize gross profit over time.
 - Cleans and transforms extracted data (e.g., fixing date formats and ensuring consistency).  
 - Appends all files together into a single analysis-ready dataset.  
 
-## Workflow
+<h2 style="color:blue;">WorkFlow</h2>
 
 1. Drop the new monthly file into the designated folder.  
 2. Open your report file and click **Update Files**.  
