@@ -32,10 +32,6 @@ A simple report is then built on top to visualize gross profit over time.
 - Cleans and transforms extracted data (e.g., fixing date formats and ensuring consistency).  
 - Appends all files together into a single analysis-ready dataset.  
 
-## Report Template
-
-This is a simple report template that shows **Gross Profit over time**.  
-
 ## Workflow
 
 1. Drop the new monthly file into the designated folder.  
