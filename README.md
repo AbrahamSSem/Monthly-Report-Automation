@@ -12,16 +12,12 @@ The automation uses a mixture of:
 
 A simple report is then built on top to visualize gross profit over time.  
 
----
-
 ## Challenge – Before Automation
 
 - Each month a file is received from the workshop via email (sometimes WhatsApp).  
 - The file contains multiple sheets (3 sheets per work order) and a summary sheet.  
 - Data had to be manually extracted, cleaned, and then compiled to send the report to the workshop manager.  
 - Reports often took **2–3 days** to prepare depending on the number of work orders.  
-
----
 
 ## Solution – After Automation
 
@@ -38,21 +34,15 @@ A simple report is then built on top to visualize gross profit over time.
 - Cleans and transforms extracted data (e.g., fixing date formats and ensuring consistency).  
 - Appends all files together into a single analysis-ready dataset.  
 
----
-
 ## Workflow
 
 1. Drop the new monthly file into the designated folder.  
 2. Open your report file and click **Update Files**.  
 3. Click **Refresh All** (Data tab) to update your report.  
 
----
-
 ## Report Template
 
 This is a simple report template that shows **Gross Profit over time**.  
-
----
 
 ## Getting Started
 
@@ -66,15 +56,6 @@ This is a simple report template that shows **Gross Profit over time**.
 2. Copy the VBA script into a new **Excel Macro-Enabled Workbook** (`.xlsm`).  
 3. Adjust the **folder path parameter** in Power Query to point to your designated folder.  
 4. Save and close.  
-
-### Usage
-1. Drop your monthly workshop file (with multiple work order sheets) into the folder.  
-2. Open your report workbook.  
-3. Run the VBA script (via the **Update Files** button).  
-4. Hit **Refresh All** to let Power Query clean, append, and update your dataset.  
-5. View the updated report template for analysis.  
-
----
 
 ## Notes
 
