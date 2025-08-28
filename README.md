@@ -1,7 +1,6 @@
 ![Demo of Report](images/report.png)
 
 # Monthly Report Automation (VBA + PowerQuery)
-<h2 style="color:blue;">Challenge – Before Automation</h2>
 
 This is a short project that takes us through the automation process of the monthly reporting process for the job orders and profitability analysis for a small garage workshop.  
 
